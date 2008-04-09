@@ -53,16 +53,31 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
 
                 // determine page id by rewrite mode
                 switch($conf['userewrite']) {
+
                     case 0:
                         preg_match('#id=([^&]*)#', $url['query'], $match);
-                        $id = cleanID(str_replace($base_url, '', $match[1]));
+                        if($base_url != '/') {
+                            $id = cleanID(str_replace($base_url, '', $match[1]));
+                        } else {
+                            $id = cleanID($match[1]);
+                        }
                         break;
+
                     case 1:
-                        $id = cleanID(str_replace('/',':',str_replace($base_url, '', $url['path'])));
+                        if($base_url != '/') {
+                            $id = cleanID(str_replace('/',':',str_replace($base_url, '', $url['path'])));
+                        } else {
+                            $id = cleanID(str_replace('/',':', $url['path']));
+                        }
                         break;
+
                     case 2:
                         preg_match('#doku.php/([^&]*)#', $url['path'], $match);
-                        $id = cleanID(str_replace($base_url, '', $match[1]));
+                        if($base_url != '/') {
+                            $id = cleanID(str_replace($base_url, '', $match[1]));
+                        } else {
+                            $id = cleanID($match[1]);
+                        }
                         break;
                 }
 
