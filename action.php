@@ -88,8 +88,20 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
 
                 // check for discussion file
                 if(@file_exists(metaFN($id, '.comments'))) {
-                    $clink = '<a href="' . $event->data['item']->link . '#discussion__section" title="'. $this->getLang('comments') . '">' . $this->getLang('comments') . '</a>';
-                    $event->data['item']->description .= "<br />" . $clink;
+                    $clink  = '<span class="plugin_feedmod_comments">' . DOKU_LF;
+                    $clink .= '  <a href="' . $event->data['item']->link . '#discussion__section" title="'. $this->getLang('comments') . '">' . $this->getLang('comments') . '</a>' . DOKU_LF;
+                    $clink .= '</span>' . DOKU_LF;
+                    $event->data['item']->description .= $clink;
+                }
+
+                // check for file footer and append it
+                if(@file_exists(DOKU_PLUGIN.'feedmod/_footer.txt')) {
+                    $footer = file_get_contents(DOKU_PLUGIN.'feedmod/_footer.txt');
+                    $footer = str_replace('@URL@', $event->data['item']->link, $footer);
+                    $footer = str_replace('@PAGE@', $id, $footer);
+                    $footer = str_replace('@TITLE@', $event->data['item']->title, $footer);
+                    $footer = str_replace('@AUTHOR@', $event->data['item']->author, $footer);
+                    $event->data['item']->description .= $footer;
                 }
             } 
         }
