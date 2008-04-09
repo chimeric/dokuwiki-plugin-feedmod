@@ -1,0 +1,13 @@
+/**
+ * Feed CSS for the DokuWiki feedmod plugin
+ *
+ * @author Michael Klier <chi@chimeric.de> 
+ */
+
+span.plugin_feedmod_comments {
+  display: block;
+}
+
+/**
+ * vim:ts=2:sw=2:et:enc=utf-8:
+ */
