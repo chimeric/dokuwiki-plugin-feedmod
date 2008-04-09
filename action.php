@@ -8,7 +8,9 @@
 // must be run within Dokuwiki
 if(!defined('DOKU_INC')) die();
 
-if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN',DOKU_INC.'lib/plugins/');
+if(!defined('DOKU_PLUGIN')) define('DOKU_PLUGIN', DOKU_INC.'lib/plugins/');
+if(!defined('DOKU_LF')) define('DOKU_LF', "\n");
+
 require_once(DOKU_INC.'inc/plugin.php');
 
 /**
@@ -83,7 +85,7 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
 
                 // strip first heading and replace item title
                 $firstheading = p_get_metadata($id, 'title', false);
-                $event->data['item']->description = preg_replace('#.*' . $firstheading . '.*\n#', '', $event->data['item']->description);
+                $event->data['item']->description = preg_replace('#[^\n]*' . htmlspecialchars($firstheading) . '.*\n#', '', $event->data['item']->description);
                 $event->data['item']->title = $firstheading;
 
                 // check for discussion file
