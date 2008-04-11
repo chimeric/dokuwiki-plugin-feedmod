@@ -83,8 +83,13 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
                         break;
                 }
 
+                // retrieve first heading from page instructions
+                $ins = p_cached_instructions(wikiFN($id));
+                $headers = array_filter($ins, array($this, '_filterHeaders'));
+                $headingIns = array_pop($headers);
+                $firstheading = $headingIns[1][0];
+                
                 // strip first heading and replace item title
-                $firstheading = p_get_metadata($id, 'title', false);
                 $event->data['item']->description = preg_replace('#[^\n]*' . htmlspecialchars($firstheading) . '.*\n#', '', $event->data['item']->description);
                 $event->data['item']->title = $firstheading;
 
@@ -107,6 +112,17 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
                 }
             } 
         }
+    }
+    
+    /**
+     * Returns true if $entry is a valid header instruction, false otherwise.
+     * 
+     * @author Gina Häußge <osd@foosel.net>
+     */
+    function _filterHeaders($entry) {
+        if (!is_array($entry) || $entry[0] != 'header' || count($entry) != 3 || !is_array($entry[1]) || count($entry[1]) != 3)
+            return false;
+        return true;
     }
 }
 
