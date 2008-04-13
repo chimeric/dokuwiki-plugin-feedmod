@@ -86,7 +86,7 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
                 // retrieve first heading from page instructions
                 $ins = p_cached_instructions(wikiFN($id));
                 $headers = array_filter($ins, array($this, '_filterHeaders'));
-                $headingIns = array_pop($headers);
+                $headingIns = array_shift($headers);
                 $firstheading = $headingIns[1][0];
                 
                 // strip first heading and replace item title
