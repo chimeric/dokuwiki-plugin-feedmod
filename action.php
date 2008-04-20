@@ -96,7 +96,7 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
                 $firstheading = $headingIns[1][0];
                 
                 // strip first heading and replace item title
-                $event->data['item']->description = preg_replace('#[^\n]*' . htmlspecialchars($firstheading) . '.*\n#', '', $event->data['item']->description);
+                $event->data['item']->description = preg_replace('#[^\n]*' . preg_quote(hsc($firstheading), '#') . '.*\n#', '', $event->data['item']->description);
                 $event->data['item']->title = $firstheading;
 
                 // check for discussion file
