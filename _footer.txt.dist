@@ -1,0 +1,3 @@
+<a href="http://digg.com/submit?phase=2&url=@URL@" title="Digg this post">Digg this post</a> &middot;
+<a href="http://www.stumbleupon.com/submit?url=@URL@" title="Digg this post">Stumble it</a> &middot;
+<a href="http://del.icio.us/post/?url=@URL@" title="Save to del.icio.us">Save to del.icio.us</a>
