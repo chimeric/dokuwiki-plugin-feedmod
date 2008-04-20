@@ -21,12 +21,12 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
 
     function getInfo() {
         return array(
-                'author' => 'Michael Klier',
-                'email'  => 'chi@chimeric.de',
-                'date'   => '2008-04-09',
+                'author' => 'Gina Häußge, Michael Klier',
+                'email'  => 'dokuwiki@chimeric.de',
+                'date'   => '2008-04-20',
                 'name'   => 'feedmod',
                 'desc'   => 'Modifies feed items for nicer full html feeds.',
-                'url'    => 'http://www.chimeric.de/projects/dokuwiki/plugin/feedmod'
+                'url'    => 'http://wiki.splitbrain.org/plugin:feedmod'
             );
     }
 
