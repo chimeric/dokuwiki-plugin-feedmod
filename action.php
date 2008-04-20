@@ -83,6 +83,12 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
                         break;
                 }
 
+                // don't add drafts to the feed
+                if(p_get_metadata($id, 'type') == 'draft') {
+                    $event->preventDefault();
+                    return;
+                }
+
                 // retrieve first heading from page instructions
                 $ins = p_cached_instructions(wikiFN($id));
                 $headers = array_filter($ins, array($this, '_filterHeaders'));
