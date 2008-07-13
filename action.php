@@ -126,9 +126,16 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
      * @author Gina Häußge <osd@foosel.net>
      */
     function _filterHeaders($entry) {
-        if (!is_array($entry) || $entry[0] != 'header' || count($entry) != 3 || !is_array($entry[1]) || count($entry[1]) != 3)
-            return false;
-        return true;
+        // normal headers
+        if (is_array($entry) && $entry[0] == 'header' && count($entry) == 3 && is_array($entry[1]) && count($entry[1]) == 3)
+            return true;
+
+        // permalink headers from include plugin
+        if (is_array($entry) && $entry[0] == 'plugin' && is_array($entry[1]) && $entry[1][0] == 'include_header' && is_array($entry[1][1]) && count($entry[1][1]) == 2)
+            return true;
+        
+        // no known header    
+        return false;
     }
 }
 
