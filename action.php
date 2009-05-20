@@ -22,11 +22,11 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
     function getInfo() {
         return array(
                 'author' => 'Gina Häußge, Michael Klier',
-                'email'  => 'dokuwiki@chimeric.de',
-                'date'   => '2008-05-21',
+                'email'  => 'chi@chimeric.de',
+                'date'   => @file_get_contents(DOKU_PLUGIN.'feedmod/VERSION'),
                 'name'   => 'feedmod',
                 'desc'   => 'Modifies feed items for nicer full html feeds.',
-                'url'    => 'http://wiki.splitbrain.org/plugin:feedmod'
+                'url'    => 'http://dokuwiki.org/plugin:feedmod'
             );
     }
 
