@@ -31,7 +31,7 @@ class action_plugin_feedmod extends DokuWiki_Action_Plugin {
     }
 
     // register hook
-    function register(&$controller) {
+    function register(Doku_Event_Handler $controller) {
         $controller->register_hook('FEED_ITEM_ADD', 'BEFORE', $this, '_feedmod');
     }
 
